@@ -192,7 +192,7 @@ namespace BetterVehicles
             };
 
             mutogVenomHead.DamagePayload.DamageKeywords[1].Value = 80;
-            mutogVenomHead.UseAimIK = true;
+            //mutogVenomHead.UseAimIK = true;
             BodyPartAspectDef MAL = (BodyPartAspectDef)mutogAgileLegs.BodyPartAspectDef;
             MAL.Speed = 11;      
         }
