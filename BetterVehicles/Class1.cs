@@ -107,6 +107,8 @@ namespace BetterVehicles
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
             SharedData Shared = GameUtl.GameComponent<SharedData>();
 
+            KillNRun.Change_EP();
+
             GroundVehicleWeaponDef ArmadilloFT = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Mephistopheles_GroundVehicleWeaponDef"));
             GroundVehicleWeaponDef ArmadilloPurgatory = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Purgatory_GroundVehicleWeaponDef"));
             GroundVehicleWeaponDef ArmadilloGaussTurret = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Gauss_Turret_GroundVehicleWeaponDef"));
