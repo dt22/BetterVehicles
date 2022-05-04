@@ -136,8 +136,14 @@ namespace BetterVehicles
             GroundVehicleModuleDef cargoRacks = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("PX_Scarab_Reinforced_Cargo_Racks_GroundVehicleModuleDef"));
             GroundVehicleModuleDef improvedChasis = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("SY_Aspida_Improved_Chassis_GroundVehicleModuleDef"));
 
-            foreach(GroundVehicleWeaponDef groundvehiclweapon in Repo.GetAllDefs<GroundVehicleWeaponDef>().Where(a => a.name.Contains("GroundVehicleWeaponDef") || a.name.Contains("KS_Buggy_Minigun_") || a.name.Contains(fullStop.name) || 
-            a.name.Contains(screamer.name) || a.name.Contains(vishnu.name)))
+            foreach(GroundVehicleWeaponDef groundvehiclweapon in Repo.GetAllDefs<GroundVehicleWeaponDef>().Where(a => a.name.Contains("GroundVehicleWeaponDef")))
+            {
+                groundvehiclweapon.HitPoints *= 2;
+                groundvehiclweapon.Armor *= 2;
+            }
+
+            foreach (WeaponDef groundvehiclweapon in Repo.GetAllDefs<WeaponDef>().Where(a => a.name.Contains("KS_Buggy_Minigun_") || a.name.Equals(fullStop.name) ||
+             a.name.Equals(screamer.name) || a.name.Equals(vishnu.name)))
             {
                 groundvehiclweapon.HitPoints *= 2;
                 groundvehiclweapon.Armor *= 2;
