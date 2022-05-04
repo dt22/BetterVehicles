@@ -97,7 +97,7 @@ namespace BetterVehicles
             }
         }
     }
-    public class Class1
+    public static class MyMod
     {
         public static void HomeMod(Func<string, object, object> api = null)
         {         
@@ -192,7 +192,7 @@ namespace BetterVehicles
             mutogVenomHead.DamagePayload.DamageKeywords[1].Value = 80;
             mutogVenomHead.UseAimIK = true;
             BodyPartAspectDef MAL = (BodyPartAspectDef)mutogAgileLegs.BodyPartAspectDef;
-            MAL.Speed = 11;
+            MAL.Speed = 11;      
         }
         public static void MainMod(Func<string, object, object> api)
         {
