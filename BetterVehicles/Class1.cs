@@ -149,7 +149,7 @@ namespace BetterVehicles
                 groundvehiclweapon.Armor *= 2;
             }
 
-            foreach (GroundVehicleWeaponDef groundvehiclweapon in Repo.GetAllDefs<GroundVehicleWeaponDef>().Where(a => a.name.Contains("KS_Buggy_Minigun_")))
+            foreach (WeaponDef groundvehiclweapon in Repo.GetAllDefs<WeaponDef>().Where(a => a.name.Contains("KS_Buggy_Minigun_")))
             {
                 groundvehiclweapon.DamagePayload.AutoFireShotCount = 6;
                 groundvehiclweapon.ChargesMax = 60;
