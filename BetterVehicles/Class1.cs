@@ -98,10 +98,16 @@ namespace BetterVehicles
             }
         }
     }
+    internal class ModConfig
+    {
+        public bool TurnOnMurogChanges = true;
+    }
     public static class MyMod
     {
+        internal static ModConfig Config;
         public static void HomeMod(Func<string, object, object> api = null)
-        {         
+        {
+            MyMod.Config = ((api("config", null) as ModConfig) ?? new ModConfig());
             HarmonyInstance.Create("your.mod.id").PatchAll();
             api?.Invoke("log verbose", "Mod Initialised.");
 
@@ -109,6 +115,7 @@ namespace BetterVehicles
             SharedData Shared = GameUtl.GameComponent<SharedData>();
 
             KillNRun.Change_EP();
+            Mutog.Change_Mutog();
 
             GroundVehicleWeaponDef ArmadilloFT = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Mephistopheles_GroundVehicleWeaponDef"));
             GroundVehicleWeaponDef ArmadilloPurgatory = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Purgatory_GroundVehicleWeaponDef"));
