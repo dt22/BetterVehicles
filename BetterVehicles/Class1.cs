@@ -139,7 +139,13 @@ namespace BetterVehicles
             GroundVehicleModuleDef cargoRacks = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("PX_Scarab_Reinforced_Cargo_Racks_GroundVehicleModuleDef"));
             GroundVehicleModuleDef improvedChasis = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("SY_Aspida_Improved_Chassis_GroundVehicleModuleDef"));
 
-            foreach(GroundVehicleWeaponDef groundvehiclweapon in Repo.GetAllDefs<GroundVehicleWeaponDef>().Where(a => a.name.Contains("GroundVehicleWeaponDef")))
+            TacticalItemDef revisedLeftTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Revised_Armor_Plating_LeftFrontTyre_BodyPartDef"));
+            TacticalItemDef revisedRightTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Revised_Armor_Plating_RightFrontTyre_BodyPartDef"));
+            TacticalItemDef spikedLeftFrontTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Spiked_Armor_LeftFrontTyre_BodyPartDef"));
+            TacticalItemDef spikedLeftBackTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Spiked_Armor_LeftBackTyre_BodyPartDef"));
+            TacticalItemDef spikedRightFrontTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Spiked_Armor_RightFrontTyre_BodyPartDef"));
+
+            foreach (GroundVehicleWeaponDef groundvehiclweapon in Repo.GetAllDefs<GroundVehicleWeaponDef>().Where(a => a.name.Contains("GroundVehicleWeaponDef")))
             {
                 groundvehiclweapon.HitPoints *= 2;
                 groundvehiclweapon.Armor *= 2;
@@ -162,6 +168,14 @@ namespace BetterVehicles
             Taurus2.ChargesMax = 8;
             ArmadilloFT.ChargesMax = 10;
             ArmadilloPurgatory.ChargesMax = 6;
+            revisedLeftTire.BodyPartAspectDef.Speed = 0;
+            revisedRightTire.BodyPartAspectDef.Speed = 0;
+            revisedArmor.ViewElementDef.Description = new LocalizedTextBind("DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels", false);
+            spikedLeftBackTire.BodyPartAspectDef.Speed = 0;
+            spikedLeftFrontTire.BodyPartAspectDef.Speed = 0;
+            spikedRightFrontTire.BodyPartAspectDef.Speed = 0;
+            spikedArmor.ViewElementDef.Description = new LocalizedTextBind("DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels", false);
+
 
             BodyPartAspectDef LWA = (BodyPartAspectDef)lightAlloy.BodyPartAspectDef;
             LWA.StatModifications[0].Value = 6;
