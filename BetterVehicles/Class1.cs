@@ -100,7 +100,7 @@ namespace BetterVehicles
     }
     internal class ModConfig
     {
-        public bool TurnOnMurogChanges = true;
+        public bool TurnOnMutogChanges = true;
     }
     public static class MyMod
     {
