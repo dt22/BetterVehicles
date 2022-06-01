@@ -47,6 +47,12 @@ namespace BetterVehicles
 {
     internal class Mutog
     {
+        private static readonly DefRepository Repo = MyMod.Repo;
+        private static readonly SharedData Shared = MyMod.Shared;
+        internal static string ModDirectory;
+        internal static string ManagedDirectory;
+        internal static string TexturesDirectory;
+        internal static string LocalizationDirectory;
         public static void Change_Mutog()
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
@@ -103,11 +109,11 @@ namespace BetterVehicles
                 ramAbilityDef.ActionPointCost = actionPointCost;
                 ramAbilityDef.WillPointCost = (float)num;
                 ramAbilityDef.RamForce = 600;
-                ramAbilityDef.ViewElementDef.DisplayName1 = new LocalizedTextBind("FURIOUS CHARGE", false);
-                ramAbilityDef.ViewElementDef.Description = new LocalizedTextBind("Charge forward ramming everything in the way for the cost of AP with distance", false);
+                ramAbilityDef.ViewElementDef.DisplayName1 = new LocalizedTextBind("FURIOUS CHARGE", true);
+                ramAbilityDef.ViewElementDef.Description = new LocalizedTextBind("Charge forward ramming everything in the way for the cost of AP with distance", true);
                 healthChangeStatusDef.HealthChangeAmount = (float)num2;
                 healthChangeStatusDef.TargetFirstDamagedBodypart = targetFirstDamagedBodypart;
-                applyStatusAbilityDef.ViewElementDef.Description = new LocalizedTextBind("Each leg restores 10 Hit Points to all injured body parts.", false);
+                applyStatusAbilityDef.ViewElementDef.Description = new LocalizedTextBind("Each leg restores 10 Hit Points to all injured body parts.", true);
                 List<AbilityDef> list = itemDef2.Abilities.ToList<AbilityDef>();
                 list.Add(item3);
                 list.Add(item2);

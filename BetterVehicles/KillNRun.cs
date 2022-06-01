@@ -25,7 +25,13 @@ namespace BetterVehicles
 {
     internal class KillNRun
     {
-       public static void Change_EP()
+        private static readonly DefRepository Repo = MyMod.Repo;
+        private static readonly SharedData Shared = MyMod.Shared;
+        internal static string ModDirectory;
+        internal static string ManagedDirectory;
+        internal static string TexturesDirectory;
+        internal static string LocalizationDirectory;
+        public static void Change_EP()
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
             GroundVehicleModuleDef experimentalExhaust = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Experimental_Exhaust_System_Engine_GroundVehicleModuleDef"));
@@ -35,47 +41,47 @@ namespace BetterVehicles
             ApplyStatusAbilityDef inspireAbility = Repo.GetAllDefs<ApplyStatusAbilityDef>().FirstOrDefault(a => a.name.Equals("Inspire_AbilityDef"));
 
             // Create Neccessary RuntimeDefs
-            ApplyStatusAbilityDef killAndRunAbility = Clone.CreateDefFromClone(
+            ApplyStatusAbilityDef killAndRunAbility = Helper.CreateDefFromClone(
                 inspireAbility,
                 "af77ed60-254d-4be6-adf8-91ca972d1e39",
                 skillName);
-            AbilityCharacterProgressionDef progression = Clone.CreateDefFromClone(
+            AbilityCharacterProgressionDef progression = Helper.CreateDefFromClone(
                 inspireAbility.CharacterProgressionData,
                 "52bdb6ed-7544-4d2a-af4f-eb199ab68fb0",
                 skillName);
-            TacticalAbilityViewElementDef viewElement = Clone.CreateDefFromClone(
+            TacticalAbilityViewElementDef viewElement = Helper.CreateDefFromClone(
                 inspireAbility.ViewElementDef,
                 "861dd580-f206-4e21-98c3-c846a6071f03",
                 skillName);
-            OnActorDeathEffectStatusDef onActorDeathEffectStatus = Clone.CreateDefFromClone(
+            OnActorDeathEffectStatusDef onActorDeathEffectStatus = Helper.CreateDefFromClone(
                 inspireAbility.StatusDef as OnActorDeathEffectStatusDef,
                 "1f5d9d57-a777-43a2-8026-1755a66fd4b2",
                 "E_KillListenerStatus [" + skillName + "]");
-            RepositionAbilityDef dashAbility = Clone.CreateDefFromClone( // Create an own Dash ability from standard Dash
+            RepositionAbilityDef dashAbility = Helper.CreateDefFromClone( // Create an own Dash ability from standard Dash
                 Repo.GetAllDefs<RepositionAbilityDef>().FirstOrDefault(r => r.name.Equals("Dash_AbilityDef")),
                 "6a35bee7-3201-4333-b0e3-00ffdc0fd025",
                 "KillAndRun_Dash_AbilityDef");
-            TacticalTargetingDataDef dashTargetingData = Clone.CreateDefFromClone( // ... and clone its targeting data
+            TacticalTargetingDataDef dashTargetingData = Helper.CreateDefFromClone( // ... and clone its targeting data
                 Repo.GetAllDefs<TacticalTargetingDataDef>().FirstOrDefault(t => t.name.Equals("E_TargetingData [Dash_AbilityDef]")),
                 "503e2edc-4c31-4762-b8ca-fd1a7f60af8a",
                 "KillAndRun_Dash_AbilityDef");
-            StatusRemoverEffectDef statusRemoverEffect = Clone.CreateDefFromClone( // Borrow effect from Manual Control
+            StatusRemoverEffectDef statusRemoverEffect = Helper.CreateDefFromClone( // Borrow effect from Manual Control
                 Repo.GetAllDefs<StatusRemoverEffectDef>().FirstOrDefault(a => a.name.Equals("E_RemoveStandBy [ManualControlStatus]")),
                 "60275a1e-6caf-48c1-b24c-cc9e33a103e2",
                 "E_StatusRemoverEffect [" + skillName + "]");
-            AddAbilityStatusDef addAbiltyStatus = Clone.CreateDefFromClone( // Borrow status from Deplay Beacon (final mission)
+            AddAbilityStatusDef addAbiltyStatus = Helper.CreateDefFromClone( // Borrow status from Deplay Beacon (final mission)
                 Repo.GetAllDefs<AddAbilityStatusDef>().FirstOrDefault(a => a.name.Equals("E_AddAbilityStatus [DeployBeacon_StatusDef]")),
                 "519423f6-b41a-4409-a48f-b5113efe61ac",
                 skillName);
-            MultiStatusDef multiStatus = Clone.CreateDefFromClone( // Borrow multi status from Rapid Clearance
+            MultiStatusDef multiStatus = Helper.CreateDefFromClone( // Borrow multi status from Rapid Clearance
                 Repo.GetAllDefs<MultiStatusDef>().FirstOrDefault(m => m.name.Equals("E_MultiStatus [RapidClearance_AbilityDef]")),
                 "d8af0b40-94f9-4c2a-a841-796469998d86",
                 skillName);
-            FirstMatchExecutionDef cameraAbility = Clone.CreateDefFromClone(
+            FirstMatchExecutionDef cameraAbility = Helper.CreateDefFromClone(
                 Repo.GetAllDefs<FirstMatchExecutionDef>().FirstOrDefault(bd => bd.name.Equals("E_DashCameraAbility [NoDieCamerasTacticalCameraDirectorDef]")),
                 "20f5659c-890a-4f29-9968-07ea67b04c6b",
                 "E_KnR_Dash_CameraAbility [NoDieCamerasTacticalCameraDirectorDef]");
-            cameraAbility.FilterDef = Clone.CreateDefFromClone(
+            cameraAbility.FilterDef = Helper.CreateDefFromClone(
                 Repo.GetAllDefs<TacCameraAbilityFilterDef>().FirstOrDefault(c => c.name.Equals("E_DashAbilityFilter [NoDieCamerasTacticalCameraDirectorDef]")),
                 "64ba51e9-c67b-4e5e-ad61-315e7f796ffa",
                 "E_KnR_Dash_CameraAbilityFilter [NoDieCamerasTacticalCameraDirectorDef]");
@@ -97,8 +103,8 @@ namespace BetterVehicles
             killAndRunAbility.StatusDef = multiStatus;
             killAndRunAbility.StatusApplicationTrigger = StatusApplicationTrigger.StartTurn;
 
-            viewElement.DisplayName1 = new LocalizedTextBind("KILL'N'RUN", false);
-            viewElement.Description = new LocalizedTextBind("Once per turn, take a free move after killing an enemy.", false);
+            viewElement.DisplayName1 = new LocalizedTextBind("KILL'N'RUN", true);
+            viewElement.Description = new LocalizedTextBind("Once per turn, take a free move after killing an enemy.", true);
             
            
             viewElement.ShowInStatusScreen = true;
@@ -107,7 +113,7 @@ namespace BetterVehicles
             dashAbility.TargetingDataDef = dashTargetingData;
             dashAbility.TargetingDataDef.Origin.Range = 14.0f;
 
-            dashAbility.ViewElementDef = Clone.CreateDefFromClone(
+            dashAbility.ViewElementDef = Helper.CreateDefFromClone(
                 inspireAbility.ViewElementDef,
                 "2e5aaf9d-21b3-4857-8e98-6df883654506",
                 "KillAndRun_Dash_AbilityDef");
