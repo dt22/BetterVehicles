@@ -171,8 +171,7 @@ namespace BetterVehicles
             ArmadilloFT.ChargesMax = 10;
             ArmadilloPurgatory.ChargesMax = 6;          
             revisedLeftTire.BodyPartAspectDef.Speed = 0;
-            revisedRightTire.BodyPartAspectDef.Speed = 0;
-            revisedArmor.ViewElementDef.Description.LocalizationKey = "KEY_REVISED_ARMOR_PLATING_DESC";
+            revisedRightTire.BodyPartAspectDef.Speed = 0;         
             revisedArmor.ViewElementDef.Description = new LocalizedTextBind("<b>DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels</b>", true);
             spikedLeftBackTire.BodyPartAspectDef.Speed = 0;
             spikedLeftFrontTire.BodyPartAspectDef.Speed = 0;
