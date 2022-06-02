@@ -104,11 +104,48 @@ namespace BetterVehicles
             GroundVehicleModuleDef cargoRacks = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("PX_Scarab_Reinforced_Cargo_Racks_GroundVehicleModuleDef"));
             GroundVehicleModuleDef improvedChasis = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("SY_Aspida_Improved_Chassis_GroundVehicleModuleDef"));
 
+            GroundVehicleModuleDef vishnuModule = Repo.GetAllDefs<GroundVehicleModuleDef>().FirstOrDefault(a => a.name.Equals("KS_Buggy_The_Vishnu_Gun_GroundVehicleModuleDef"));
+
             TacticalItemDef revisedLeftTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Revised_Armor_Plating_LeftFrontTyre_BodyPartDef"));
             TacticalItemDef revisedRightTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Revised_Armor_Plating_RightFrontTyre_BodyPartDef"));
             TacticalItemDef spikedLeftFrontTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Spiked_Armor_LeftFrontTyre_BodyPartDef"));
             TacticalItemDef spikedLeftBackTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Spiked_Armor_LeftBackTyre_BodyPartDef"));
             TacticalItemDef spikedRightFrontTire = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Spiked_Armor_RightFrontTyre_BodyPartDef"));
+
+            TacticalItemDef KaosBuggyTop = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Top_BodyPartDef"));
+            TacticalItemDef KaosBuggyFront = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Front_BodyPartDef"));
+            TacticalItemDef KaosBuggyLeft = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Left_BodyPartDef"));
+            TacticalItemDef KaosBuggyRight = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Right_BodyPartDef"));
+            TacticalItemDef KaosBuggyBack = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_Back_BodyPartDef"));
+
+            TacticalItemDef KaosBuggyRearTyre = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_RearTyre_BodyPartDef"));
+            TacticalItemDef KaosBuggyFrontLeftTyre = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_LeftFrontTyre_BodyPartDef"));
+            TacticalItemDef KaosBuggyFrontRightTyre = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("KS_Kaos_Buggy_RightFrontTyre_BodyPartDef"));
+
+            KaosBuggyTop.HitPoints = 220;
+            KaosBuggyFront.HitPoints = 280;
+            KaosBuggyFront.Armor = 40;
+            KaosBuggyLeft.HitPoints = 200;
+            KaosBuggyLeft.Armor = 20;
+            KaosBuggyRight.HitPoints = 200;
+            KaosBuggyRight.Armor = 20;
+            KaosBuggyBack.HitPoints = 200;
+            KaosBuggyBack.Armor = 20;
+
+            KaosBuggyRearTyre.HitPoints = 180;
+            KaosBuggyRearTyre.Armor = 10;
+            KaosBuggyRearTyre.BodyPartAspectDef.Speed = 13;
+            KaosBuggyFrontLeftTyre.HitPoints = 180;
+            KaosBuggyFrontLeftTyre.Armor = 10;
+            KaosBuggyFrontRightTyre.HitPoints = 180;
+            KaosBuggyFrontRightTyre.Armor = 10;
+
+            vishnuModule.BodyPartAspectDef.Endurance = 1;
+            KaosBuggyTop.BodyPartAspectDef.Endurance = 19;
+            KaosBuggyFront.BodyPartAspectDef.Endurance = 20;
+            KaosBuggyLeft.BodyPartAspectDef.Endurance = 18;
+            KaosBuggyRight.BodyPartAspectDef.Endurance = 18;
+            KaosBuggyBack.BodyPartAspectDef.Endurance = 19;
 
             foreach (GroundVehicleWeaponDef groundvehiclweapon in Repo.GetAllDefs<GroundVehicleWeaponDef>().Where(a => a.name.Contains("GroundVehicleWeaponDef")))
             {
@@ -135,6 +172,7 @@ namespace BetterVehicles
             ArmadilloPurgatory.ChargesMax = 6;          
             revisedLeftTire.BodyPartAspectDef.Speed = 0;
             revisedRightTire.BodyPartAspectDef.Speed = 0;
+            revisedArmor.ViewElementDef.Description.LocalizationKey = "KEY_REVISED_ARMOR_PLATING_DESC";
             revisedArmor.ViewElementDef.Description = new LocalizedTextBind("<b>DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels</b>", true);
             spikedLeftBackTire.BodyPartAspectDef.Speed = 0;
             spikedLeftFrontTire.BodyPartAspectDef.Speed = 0;

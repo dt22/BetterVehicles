@@ -140,7 +140,7 @@ PR_BC_FRENZY_DESC,Text,,"Instils Frenzy in friendly characters within 20 tiles f
 PR_BC_FRENZY_STATUS_DESC,Text,,"Speed increased by 33% and immune to panic",,,,,,,,
 PX_HAVENRECRUITS_RESEARCHDEF_UNLOCK,Text,,"We need recruits and there is no lack of candidates. However, very few of them fulfill the operational requirements. We should put in place a proper selection process.",,,,,,,,
 PX_HAVENRECRUITS_RESEARCHDEF_COMPLETE,Text,,"We have created a set of biometric and psych-eval tests in order to select potential recruits. We hope to pick at least one suitable individual every few days. On signing up with us the recruit or their dependents receive a single allotment of comestibles as compensation for their services. 
-
+KEY_REVISED_ARMOR_PLATING_DESC,Text,,"<b>DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels</b>",,,,,,,,
 We can also recruit in havens with leaders favorable to our cause. We expect that the candidates the havens will offer will not be exactly the pick of the litter; they will want to get rid of people they don't want to have. In addition, they will insist on us buying the equipment for the recruit with a mark-up. 
 
 On the upside, we can expect the recruits to be completely loyal to our cause. However, if necessary, a reliable indoctrination program can be implemented to supplement any deficiencies in that aspect.",,,,,,,,

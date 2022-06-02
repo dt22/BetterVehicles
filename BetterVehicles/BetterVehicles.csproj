@@ -94,10 +94,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Localization\PR_BC_Localization.csv" />
-    <None Include="Assets\Localization\PR_FS_Story_Localization.csv" />
-    <None Include="Assets\Presets\AbilityDefToNameDict.json" />
-    <None Include="Assets\Presets\NotLocalizedTextMap.json" />
+    <None Include="Assets\Localization\PR_BC_Localization.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\Localization\PR_FS_Story_Localization.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\Presets\AbilityDefToNameDict.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\Presets\NotLocalizedTextMap.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

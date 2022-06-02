@@ -65,15 +65,21 @@ namespace BetterVehicles
             if (MyMod.Config.TurnOnMutogChanges == true)
             {
                 mutogSlashTail.DamagePayload.DamageKeywords = new List<DamageKeywordPair>
-            {
-                mutogSlashTail.DamagePayload.DamageKeywords[0],
-                mutogSlashTail.DamagePayload.DamageKeywords[1],
-                new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.PiercingKeyword, Value = 20 },
-            };
+                {
+                    mutogSlashTail.DamagePayload.DamageKeywords[0],
+                    mutogSlashTail.DamagePayload.DamageKeywords[1],
+                    new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.PiercingKeyword, Value = 20 },
+                };
 
                 mutogVenomHead.DamagePayload.DamageKeywords[1].Value = 80;
+                mutogSlashTail.DamagePayload.DamageKeywords = new List<DamageKeywordPair>
+                {
+                    new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.DamageKeyword, Value = 60 },
+                    new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.PoisonousKeyword, Value = 80 },
+                    new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.ParalysingKeyword, Value = 8 },
+                };
                 //mutogVenomHead.UseAimIK = true;
-                
+
                 BodyPartAspectDef MAL = (BodyPartAspectDef)mutogAgileLegs.BodyPartAspectDef;
                 MAL.Speed = 11;
 
