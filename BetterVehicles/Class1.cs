@@ -44,12 +44,15 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using PhoenixPoint.Geoscape.View.ViewModules;
+using I2.Loc;
 
 namespace BetterVehicles
 {
     internal class ModConfig
     {
         public bool TurnOnMutogChanges = true;
+        public bool FixText = true;
     }
     public static class MyMod
     {
@@ -63,6 +66,7 @@ namespace BetterVehicles
         internal static readonly DefRepository Repo = GameUtl.GameComponent<DefRepository>();
         internal static readonly SharedData Shared = GameUtl.GameComponent<SharedData>();
         internal static readonly AssetsManager assetsManager = GameUtl.GameComponent<AssetsManager>();
+        internal static List<string> ModifiedLocalizationTerms = new List<string>();
         public static void HomeMod(Func<string, object, object> api = null)
         {
             MyMod.Config = ((api("config", null) as ModConfig) ?? new ModConfig());
@@ -85,9 +89,9 @@ namespace BetterVehicles
             GroundVehicleWeaponDef ArmadilloFT = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Mephistopheles_GroundVehicleWeaponDef"));
             GroundVehicleWeaponDef ArmadilloPurgatory = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Purgatory_GroundVehicleWeaponDef"));
             GroundVehicleWeaponDef ArmadilloGaussTurret = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Gauss_Turret_GroundVehicleWeaponDef"));
-            
+
             GroundVehicleWeaponDef Taurus2 = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("PX_Scarab_Taurus_GroundVehicleWeaponDef"));
-            
+
             WeaponDef fullStop = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Buggy_Fullstop_WeaponDef"));
             WeaponDef screamer = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Buggy_Screamer_WeaponDef"));
             WeaponDef vishnu = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Buggy_The_Vishnu_Gun_Cannon_WeaponDef"));
@@ -169,14 +173,20 @@ namespace BetterVehicles
             fullStop.ChargesMax = 3;
             Taurus2.ChargesMax = 8;
             ArmadilloFT.ChargesMax = 10;
-            ArmadilloPurgatory.ChargesMax = 6;          
+            ArmadilloPurgatory.ChargesMax = 6;
             revisedLeftTire.BodyPartAspectDef.Speed = 0;
-            revisedRightTire.BodyPartAspectDef.Speed = 0;         
-            revisedArmor.ViewElementDef.Description = new LocalizedTextBind("<b>DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels</b>", true);
+            revisedRightTire.BodyPartAspectDef.Speed = 0;
+            if(Config.FixText == true)
+            {
+                string text10 = "DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels";
+                revisedArmor.ViewElementDef.Description = new LocalizedTextBind(text10, true);
+                spikedArmor.ViewElementDef.Description = new LocalizedTextBind(text10, true);
+                MyMod.ModifiedLocalizationTerms.Add(text10);
+            }        
             spikedLeftBackTire.BodyPartAspectDef.Speed = 0;
             spikedLeftFrontTire.BodyPartAspectDef.Speed = 0;
             spikedRightFrontTire.BodyPartAspectDef.Speed = 0;
-            spikedArmor.ViewElementDef.Description = new LocalizedTextBind("<b>DOES NOT ADD ARMOR, adds +250 HP and +20 Armor to Wheels</b>", true);
+            
 
 
             BodyPartAspectDef LWA = (BodyPartAspectDef)lightAlloy.BodyPartAspectDef;
@@ -214,6 +224,34 @@ namespace BetterVehicles
         {
             HarmonyInstance.Create("your.mod.id").PatchAll();
             api("log verbose", "Mod Initialised.");
+        }
+        
+        [HarmonyPatch(typeof(LocalizationManager), "TryGetTranslation")]
+        public static class LocalizationManager_TryGetTranslation_Patch
+        {
+            // Token: 0x060000CA RID: 202 RVA: 0x0000ABF2 File Offset: 0x00008DF2
+            public static bool Prepare()
+            {
+                return BetterVehicles.MyMod.Config.FixText;
+            }
+
+            // Token: 0x060000CB RID: 203 RVA: 0x0000B0B4 File Offset: 0x000092B4
+            public static void Postfix(bool __result, string Term, ref string Translation)
+            {
+                try
+                {
+                    if (!__result)
+                    {
+                        if (!string.IsNullOrEmpty(Term) && MyMod.ModifiedLocalizationTerms.Contains(Term))
+                        {                           
+                            Translation = Term;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
     }
 }
