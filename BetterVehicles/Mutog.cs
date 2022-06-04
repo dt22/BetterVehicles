@@ -71,8 +71,7 @@ namespace BetterVehicles
                     new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.PiercingKeyword, Value = 20 },
                 };
 
-                mutogVenomHead.DamagePayload.DamageKeywords[1].Value = 80;
-                mutogSlashTail.DamagePayload.DamageKeywords = new List<DamageKeywordPair>
+                mutogVenomHead.DamagePayload.DamageKeywords = new List<DamageKeywordPair>
                 {
                     new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.DamageKeyword, Value = 60 },
                     new DamageKeywordPair{DamageKeywordDef = Shared.SharedDamageKeywords.PoisonousKeyword, Value = 80 },
