@@ -84,7 +84,7 @@ namespace BetterVehicles
             LocalizationDirectory = Path.Combine(ModDirectory, "Assets", "Localization");
 
             KillNRun.Change_EP();
-            Mutog.Change_Mutog();
+            //Mutog.Change_Mutog();
 
             GroundVehicleWeaponDef ArmadilloFT = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Mephistopheles_GroundVehicleWeaponDef"));
             GroundVehicleWeaponDef ArmadilloPurgatory = Repo.GetAllDefs<GroundVehicleWeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_Armadillo_Purgatory_GroundVehicleWeaponDef"));
