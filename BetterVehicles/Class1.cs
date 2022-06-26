@@ -208,12 +208,10 @@ namespace BetterVehicles
                     Value = 1,
                 },
             };
-            
-            ArmadilloGaussTurret.Abilities = new AbilityDef[]
-            {
-                ArmadilloGaussTurret.Abilities[0],
-                Repo.GetAllDefs<AbilityDef>().FirstOrDefault(a => a.name.Equals("ReturnFire_AbilityDef")),
-            };
+
+            ArmadilloGaussTurret.ChargesMax = 96;
+            ArmadilloGaussTurret.DamagePayload.DamageKeywords[1].Value = 2;
+            ArmadilloGaussTurret.SpreadDegrees = 1.8f;
 
             superCharger.Abilities = new AbilityDef[]
             {
